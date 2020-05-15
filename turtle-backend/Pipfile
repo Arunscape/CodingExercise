@@ -9,6 +9,8 @@ black = "*"
 flake8 = "*"
 
 [packages]
+falcon = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
