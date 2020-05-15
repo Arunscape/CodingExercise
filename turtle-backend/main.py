@@ -62,7 +62,7 @@ import json
 
 class TurtleResource:
     def on_post(self, req, resp):
-        """Handles GET requests"""
+        """Handles POST requests"""
         resp.status = falcon.HTTP_200  # This is the default status
         t = Turtle()
         request_body = req.stream.read(req.content_length or 0).decode()
@@ -77,7 +77,7 @@ class TurtleResource:
                     'times_visited': count
                 }
                 for coord, count in duplicates.items()],
-            'got request: ': request_body
+            'received': request_body
         }
 
 
