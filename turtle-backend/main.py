@@ -2,6 +2,7 @@ from typing import List, Tuple, Dict
 from enum import Enum
 from collections import Counter
 
+# todo, I could encode each direction as a tuple instead. e.g. right would be (1,0) and up is (0, 1)
 Direction = Enum("Direction", "UP DOWN LEFT RIGHT")
 
 class Turtle:
@@ -69,8 +70,13 @@ class TurtleResource:
 
         # print(req)
         resp.media = {
-            # 'path': t.path,
-            # 'duplicates': duplicates 
+            'path': [{'x': x, 'y': y} for x, y in t.path],
+            'duplicates': [
+                {   'x': coord[0],
+                    'y': coord[1],
+                    'times_visited': count
+                }
+                for coord, count in duplicates.items()],
             'got request: ': request_body
         }
 
