@@ -1,6 +1,11 @@
-import React from 'react';
+import React , {useState, useEffect} from 'react';
 import Chart from './Chart';
 const App =  () => {
+
+  const [data, setData] = useState([['x', 'y']]);
+
+
+  
   
   const handleFile = (file) => {
     const fr = new FileReader();
@@ -10,10 +15,19 @@ const App =  () => {
         'Content-Type': 'application/json',
       },
       body: fr.result,
-    }).then(res => res.json()).then(e => console.log(e))
+    }).then(res => res.json()).then(e => {
+      // console.log(e)
+      setData([...data, ...e.path])
+      console.log("setting data")
+      // console.log(data)
+    })
     fr.readAsText(file)
 
   }
+
+  useEffect(() => {
+    console.log("data changed", data)
+  }, [data])
   
   return (
     <>
@@ -22,7 +36,7 @@ const App =  () => {
   accept='.txt'
   onChange= {(e) => {handleFile(e.target.files[0])}}
   />
-  <Chart data={[[0,0], [0,1]]}/>
+  <Chart data={data}/>
   </>
 )
   }
