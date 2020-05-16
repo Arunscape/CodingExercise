@@ -70,7 +70,7 @@ class TurtleResource:
 
         # print(req)
         resp.media = {
-            'path': [{'x': x, 'y': y} for x, y in t.path],
+            'path': [[x, y] for x, y in t.path],
             'duplicates': [
                 {   'x': coord[0],
                     'y': coord[1],
