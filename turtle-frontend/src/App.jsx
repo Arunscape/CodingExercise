@@ -2,7 +2,7 @@ import React , {useState, useEffect} from 'react';
 import Chart from './Chart';
 const App =  () => {
 
-  const [data, setData] = useState([['x', 'y']]);
+  const [data, setData] = useState([[]]);
 
 
   
@@ -14,7 +14,7 @@ const App =  () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: fr.result,
+      body: fr.result.trim(),
     }).then(res => res.json()).then(e => {
       // console.log(e)
       setData([...data, ...e.path])
