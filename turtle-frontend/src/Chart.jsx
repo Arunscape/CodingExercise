@@ -2,10 +2,10 @@ import React, { useRef, useEffect, useState } from "react";
 import { Scatter } from "react-chartjs-2";
 
 export default (props) => {
-  const [data, setData] = useState(props.data);
-
+  const [data, setData] = useState([]);
   const [chartData, setChartData] = useState([]);
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(0);
+  const [chartDelay, setChartDelay] = useState(props.chartDelay);
 
   const d = {
     labels: [],
@@ -64,30 +64,31 @@ export default (props) => {
   };
 
   useEffect(() => {
+    if (data !== props.data) {
+      setData(props.data);
+      setChartData([]);
+      setIndex(0);
+    }
     const id = setTimeout(() => {
-      if (data[index] && index < data.length) {
-        console.log("HEY");
+      if (props.data[index] && index < props.data.length) {
         if (index > 1) {
-          setChartData([...chartData, data[index]]);
+          setChartData([...chartData, props.data[index]]);
         } else {
-          setChartData([["x", "y"], data[index]]);
+          setChartData([["x", "y"], props.data[index]]);
         }
         setIndex(index + 1);
-        console.log([...chartData, data[index]]);
+        // console.log([...chartData, props.data[index]]);
       }
-    }, 4);
+    }, chartDelay);
 
     return () => {
       clearTimeout(id);
     };
-  }, [data, chartData, index]);
+  }, [props.data, chartData, index]);
 
   useEffect(() => {
-    console.log("rerender");
-    console.log(props.data);
-    setData(props.data);
-  }, [props.data]);
-  // console.log(data)
+    setChartDelay(props.chartDelay);
+  }, [props.chartDelay]);
 
   return (
     <>

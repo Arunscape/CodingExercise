@@ -3,6 +3,8 @@ import Chart from "./Chart";
 const App = () => {
   const [data, setData] = useState([[]]);
 
+  const [chartDelay, setChartDelay] = useState(500);
+
   const handleFile = (file) => {
     const fr = new FileReader();
     fr.onloadend = () =>
@@ -29,7 +31,7 @@ const App = () => {
 
   return (
     <div style={{ height: "100vh" }}>
-      <div style={{ height: "5%" }}>
+      <div style={{ height: "5%", display: "inline-block" }}>
         <input
           type="file"
           accept=".txt"
@@ -37,17 +39,19 @@ const App = () => {
             handleFile(e.target.files[0]);
           }}
         />
+
         <input
           type="range"
           min="5"
           max="5000"
-          value="500"
-          class="slider"
-          id="myRange"
-        ></input>
+          onChange={(e) => {
+            setChartDelay(e.target.value);
+          }}
+        />
+        {chartDelay}
       </div>
       <div style={{ height: "95%" }}>
-        <Chart data={data} />
+        <Chart data={data} chartDelay={chartDelay} />
       </div>
     </div>
   );
