@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import Turtle from "./pages/Turtle";
 import "./styles/tailwind.css";
 
+import UploadButton from "./components/UploadButton";
+
 const App = () => {
-  const [data, setData] = useState([[]]);
+  const [data, setData] = useState([]);
 
   const handleFile = (file) => {
     const fr = new FileReader();
@@ -21,7 +23,8 @@ const App = () => {
           setData([...data, ...e.path]);
           console.log("setting data");
           // console.log(data)
-        });
+        })
+        .catch((e) => alert("error: ", e));
     fr.readAsText(file);
   };
 
@@ -30,18 +33,22 @@ const App = () => {
   }, [data]);
 
   return (
-    <>
-      <input
-        type="file"
-        accept=".txt"
-        onChange={(e) => {
-          handleFile(e.target.files[0]);
-        }}
-      />
-      Select a file to upload. It can only contain the characters 'F', 'L', or
-      'R'
-      <Turtle data={data} />
-    </>
+    <div className="flex w-full h-screen items-center justify-center bg-grey-lighter text-center">
+      {data.length > 0 ? (
+        <Turtle data={data} />
+      ) : (
+        <div>
+          <h1 className="text-3xl font-bold pb-16">Turtle</h1>
+          <UploadButton
+            type="file"
+            accept=".txt"
+            onChange={(e) => {
+              handleFile(e.target.files[0]);
+            }}
+          />
+        </div>
+      )}
+    </div>
   );
 };
 
