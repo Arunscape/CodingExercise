@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Chart from "./Chart";
+import Turtle from "./pages/Turtle";
+import "./styles/tailwind.css";
+
 const App = () => {
   const [data, setData] = useState([[]]);
-
-  const [chartDelay, setChartDelay] = useState(500);
 
   const handleFile = (file) => {
     const fr = new FileReader();
@@ -30,30 +30,18 @@ const App = () => {
   }, [data]);
 
   return (
-    <div style={{ height: "100vh" }}>
-      <div style={{ height: "5%", display: "inline-block" }}>
-        <input
-          type="file"
-          accept=".txt"
-          onChange={(e) => {
-            handleFile(e.target.files[0]);
-          }}
-        />
-
-        <input
-          type="range"
-          min="5"
-          max="5000"
-          onChange={(e) => {
-            setChartDelay(e.target.value);
-          }}
-        />
-        {chartDelay}
-      </div>
-      <div style={{ height: "95%" }}>
-        <Chart data={data} chartDelay={chartDelay} />
-      </div>
-    </div>
+    <>
+      <input
+        type="file"
+        accept=".txt"
+        onChange={(e) => {
+          handleFile(e.target.files[0]);
+        }}
+      />
+      Select a file to upload. It can only contain the characters 'F', 'L', or
+      'R'
+      <Turtle data={data} />
+    </>
   );
 };
 
