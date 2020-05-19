@@ -92,6 +92,11 @@ export default (props: Props) => {
       setChartData([]);
       setIndex(0);
     }
+
+    if (index >= data.length) {
+      return;
+    }
+
     const id = setTimeout(() => {
       setChartData([...chartData, props.data.path[index]]);
       setIndex(index + 1);
