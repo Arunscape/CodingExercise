@@ -19,7 +19,12 @@ export default (props) => {
         {"Speed (ms before drawing the next point, lower is faster)"}
       </div>
       <div style={{ height: "80%" }}>
-        <Chart className="w-full" data={props.data} chartDelay={chartDelay} />
+        <Chart
+          className="w-full"
+          data={props.data}
+          duplicates={props.duplicates}
+          chartDelay={chartDelay}
+        />
       </div>
     </div>
   );

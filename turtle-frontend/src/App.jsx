@@ -6,6 +6,7 @@ import UploadButton from "./components/UploadButton";
 
 const App = () => {
   const [data, setData] = useState([]);
+  const [duplicates, setDuplicates] = useState([]);
 
   const handleFile = (file) => {
     const fr = new FileReader();
@@ -21,6 +22,7 @@ const App = () => {
         .then((e) => {
           // console.log(e)
           setData([...data, ...e.path]);
+          setDuplicates(e.duplicates);
           console.log("setting data");
           // console.log(data)
         })
@@ -35,7 +37,7 @@ const App = () => {
   return (
     <div className="flex w-full h-screen items-center justify-center bg-grey-lighter text-center">
       {data.length > 0 ? (
-        <Turtle data={data} />
+        <Turtle data={data} duplicates={duplicates} />
       ) : (
         <div>
           <h1 className="text-3xl font-bold pb-16">Turtle</h1>

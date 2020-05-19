@@ -13,9 +13,15 @@ export default (props) => {
       {
         label: "My First dataset",
         fill: false,
-        backgroundColor: "rgba(75,192,192,0.4)",
+        backgroundColor: "#e755ba",
         pointBorderColor: "rgba(75,192,192,1)",
-        pointBackgroundColor: "#fff",
+        pointBackgroundColor: data.map((d) => {
+          if (props.duplicates.find((e) => e.x === d.x && e.y === d.y)) {
+            return "red";
+          } else {
+            return "#fff";
+          }
+        }),
         pointBorderWidth: 1,
         pointHoverRadius: 5,
         pointHoverBackgroundColor: "rgba(75,192,192,1)",
@@ -25,10 +31,10 @@ export default (props) => {
         pointHitRadius: 10,
         data: chartData,
         showLine: true,
-        borderWidth: 5,
+        borderWidth: 8,
         lineTension: 0,
         pointRadius: chartData.length
-          ? [...Array(chartData.length - 1).fill(2), 8]
+          ? [...Array(chartData.length - 1).fill(3), 8]
           : undefined,
       },
     ],
