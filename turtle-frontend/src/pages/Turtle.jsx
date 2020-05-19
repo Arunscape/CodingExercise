@@ -2,25 +2,29 @@ import React, { useState } from "react";
 import Chart from "../components/Chart";
 
 export default (props) => {
-  const [chartDelay, setChartDelay] = useState(500);
+  const [chartDelay, setChartDelay] = useState(100);
 
   return (
-    <div className="h-full w-full">
-      <div style={{ height: "20%" }}>
-        {chartDelay}
+    <div className=" flex flex-col h-full w-full">
+      <div className="flex flex-row justify-around items-center w-full p-2">
         <input
           type="range"
-          min="5"
-          max="5000"
+          className="px-3"
+          min="0"
+          max="995"
           onChange={(e) => {
-            setChartDelay(e.target.value);
+            setChartDelay(1000 - e.target.value);
           }}
+          value={1000 - chartDelay}
+          style={{ width: "40%" }}
         />
-        {"Speed (ms before drawing the next point, lower is faster)"}
+        <span>{"Speed. Slide right to go faster, Left to go slower"}</span>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded self-end">
+          Give me the raw data!
+        </button>
       </div>
-      <div style={{ height: "80%" }}>
+      <div className="w-full flex-grow">
         <Chart
-          className="w-full"
           data={props.data}
           duplicates={props.duplicates}
           chartDelay={chartDelay}
