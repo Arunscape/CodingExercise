@@ -1,9 +1,21 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Scatter } from "react-chartjs-2";
 
-export default (props) => {
-  const [data, setData] = useState([]);
-  const [chartData, setChartData] = useState([]);
+type Point = { x: number; y: number };
+
+type Data = {
+  path: Point[];
+  duplicates: Point[];
+};
+
+interface Props {
+  data: Data;
+  chartDelay: number;
+}
+
+export default (props: Props) => {
+  const [data, setData] = useState<Point[]>([]);
+  const [chartData, setChartData] = useState<Point[]>([]);
   const [index, setIndex] = useState(0);
   const [chartDelay, setChartDelay] = useState(props.chartDelay);
 
@@ -15,8 +27,10 @@ export default (props) => {
         fill: false,
         backgroundColor: "#e755ba",
         pointBorderColor: "rgba(75,192,192,1)",
-        pointBackgroundColor: data.map((d) => {
-          if (props.data.duplicates.find((e) => e.x === d.x && e.y === d.y)) {
+        pointBackgroundColor: data.map((d: Point) => {
+          if (
+            props.data.duplicates.find((e: Point) => e.x === d.x && e.y === d.y)
+          ) {
             return "red";
           } else {
             return "#fff";
@@ -67,6 +81,9 @@ export default (props) => {
     },
     responsive: true,
     maintainAspectRatio: false,
+    hover: {
+      animationDuration: 0,
+    },
   };
 
   useEffect(() => {
@@ -76,15 +93,8 @@ export default (props) => {
       setIndex(0);
     }
     const id = setTimeout(() => {
-      if (props.data.path[index] && index < props.data.path.length) {
-        if (index > 1) {
-          setChartData([...chartData, props.data.path[index]]);
-        } else {
-          setChartData([["x", "y"], props.data.path[index]]);
-        }
-        setIndex(index + 1);
-        // console.log([...chartData, props.data[index]]);
-      }
+      setChartData([...chartData, props.data.path[index]]);
+      setIndex(index + 1);
     }, chartDelay);
 
     return () => {
