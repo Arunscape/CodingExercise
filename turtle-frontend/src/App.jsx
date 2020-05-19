@@ -24,7 +24,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    // while the console.log is not necesssary, the effect is, so that components update when the data is changed
     console.log("data changed", data);
   }, [data]);
 
