@@ -1,0 +1,27 @@
+version: "3"
+
+# I should be using docker's built in dns networking but I'm not
+# deploying this and I did not want to change the dev config
+
+services:
+  ################################################################################
+  turtle-backend:
+    build:
+      context: turtle-backend
+
+    container_name: turtle-backend
+    ports:
+      - 8000:8000
+    network_mode: "host"
+
+  ################################################################################
+  turtle-frontend:
+    build:
+      context: turtle-frontend
+
+    container_name: turtle-frontend
+    ports:
+      - 3000:3000
+    stdin_open: true
+    tty: true
+    network_mode: "host"
