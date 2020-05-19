@@ -24,11 +24,7 @@ export default (props) => {
         </button>
       </div>
       <div className="w-full flex-grow p-2">
-        <Chart
-          data={props.data}
-          duplicates={props.duplicates}
-          chartDelay={chartDelay}
-        />
+        <Chart data={props.data} chartDelay={chartDelay} />
       </div>
     </div>
   );

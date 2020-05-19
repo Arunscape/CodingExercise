@@ -5,8 +5,7 @@ import "./styles/tailwind.css";
 import UploadButton from "./components/UploadButton";
 
 const App = () => {
-  const [data, setData] = useState([]);
-  const [duplicates, setDuplicates] = useState([]);
+  const [data, setData] = useState(null);
 
   const handleFile = (file) => {
     const fr = new FileReader();
@@ -19,25 +18,20 @@ const App = () => {
         body: fr.result.trim(),
       })
         .then((res) => res.json())
-        .then((e) => {
-          // console.log(e)
-          setData([...data, ...e.path]);
-          setDuplicates(e.duplicates);
-          console.log("setting data");
-          // console.log(data)
-        })
+        .then((d) => setData(d))
         .catch((e) => alert("error: ", e));
     fr.readAsText(file);
   };
 
   useEffect(() => {
+    // while the console.log is not necesssary, the effect is, so that components update when the data is changed
     console.log("data changed", data);
   }, [data]);
 
   return (
     <div className="flex w-full h-screen items-center justify-center bg-grey-lighter text-center">
-      {data.length > 0 ? (
-        <Turtle data={data} duplicates={duplicates} />
+      {data && data.path && data.path.length > 0 ? (
+        <Turtle data={data} />
       ) : (
         <div>
           <h1 className="text-3xl font-bold pb-16">Turtle</h1>

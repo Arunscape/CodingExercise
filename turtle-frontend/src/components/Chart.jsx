@@ -16,7 +16,7 @@ export default (props) => {
         backgroundColor: "#e755ba",
         pointBorderColor: "rgba(75,192,192,1)",
         pointBackgroundColor: data.map((d) => {
-          if (props.duplicates.find((e) => e.x === d.x && e.y === d.y)) {
+          if (props.data.duplicates.find((e) => e.x === d.x && e.y === d.y)) {
             return "red";
           } else {
             return "#fff";
@@ -70,17 +70,17 @@ export default (props) => {
   };
 
   useEffect(() => {
-    if (data !== props.data) {
-      setData(props.data);
+    if (data !== props.data.path) {
+      setData(props.data.path);
       setChartData([]);
       setIndex(0);
     }
     const id = setTimeout(() => {
-      if (props.data[index] && index < props.data.length) {
+      if (props.data.path[index] && index < props.data.path.length) {
         if (index > 1) {
-          setChartData([...chartData, props.data[index]]);
+          setChartData([...chartData, props.data.path[index]]);
         } else {
-          setChartData([["x", "y"], props.data[index]]);
+          setChartData([["x", "y"], props.data.path[index]]);
         }
         setIndex(index + 1);
         // console.log([...chartData, props.data[index]]);
