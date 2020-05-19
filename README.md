@@ -1,5 +1,3 @@
-# Run Instructions
-
 ## Requirements
 
 - yarn
