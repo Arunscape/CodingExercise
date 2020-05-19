@@ -1,5 +1,3 @@
-# Run Instructions
-
 ## Requirements
 
 - yarn
@@ -15,7 +13,7 @@ yarn start
 
 cd turtle-backend
 pipenv sync
-pipenv run main.py
+pipenv run python main.py
 ```
 
 Then, go to http://localhost:3000 in your favourite browser
