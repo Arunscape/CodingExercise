@@ -23,7 +23,7 @@ export default (props) => {
           Give me the raw data!
         </button>
       </div>
-      <div className="w-full flex-grow">
+      <div className="w-full flex-grow p-2">
         <Chart
           data={props.data}
           duplicates={props.duplicates}
