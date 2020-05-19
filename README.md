@@ -1,11 +1,12 @@
 ## Requirements
 
+### Manually
+Make sure you have these installed:
 - yarn
 - python 3.8 (3.7 will probably work too)
 - pipenv
 
-## Run
-
+Then run
 ```
 cd turtle-frontend
 yarn
@@ -14,6 +15,11 @@ yarn start
 cd turtle-backend
 pipenv sync
 pipenv run python main.py
+```
+
+### Using docker-compose
+```
+docker-compose up
 ```
 
 Then, go to http://localhost:3000 in your favourite browser
