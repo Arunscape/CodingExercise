@@ -1,4 +1,8 @@
-## Requirements
+## How to interpret the graph:
+- The end location of the turtle is the biggest dot on the chart
+- The points which the turtle has visited more than once are red. Other points are white
+
+## How to run it
 
 ### Manually
 Make sure you have these installed:
@@ -22,7 +26,7 @@ pipenv run python main.py
 docker-compose up
 ```
 
-Then, go to http://localhost:3000 in your favourite browser
+Then, go to http://localhost:3000 in your favourite browser and upload one of the .txt files in the data/ folder
 
 # AltaML Interview Coding Exercise
 
