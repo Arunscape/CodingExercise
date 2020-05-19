@@ -1,6 +1,10 @@
 import React from "react";
 
-export default (props: any) => {
+interface Props {
+  accept: string;
+  onChange: (e: any) => any;
+}
+export default (props: Props) => {
   return (
     <label className="w-auto flex flex-col items-center px-4 py-6 bg-white text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-gray-500">
       <svg
