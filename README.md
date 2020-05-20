@@ -1,16 +1,28 @@
 ## How to interpret the graph:
+
 - The end location of the turtle is the biggest dot on the chart
 - The points which the turtle has visited more than once are red. Other points are white
 
+![chart_screenshot](screenshot.png)
+
 ## How to run it
 
+### Using docker-compose
+
+```
+docker-compose up
+```
+
 ### Manually
+
 Make sure you have these installed:
+
 - yarn
 - python 3.8 (3.7 will probably work too)
 - pipenv
 
 Then run
+
 ```
 cd turtle-frontend
 yarn
@@ -21,12 +33,8 @@ pipenv sync
 pipenv run python main.py
 ```
 
-### Using docker-compose
-```
-docker-compose up
-```
-
-Then, go to http://localhost:3000 in your favourite browser and upload one of the .txt files in the data/ folder
+Then, go to http://localhost:3000 in your favourite browser and upload one of the .txt files in the data/ folder.
+Make sure ports 3000 and 8000 are not in use by another application on the computer you're running this on, or change docker-compose.yml as needed.
 
 # AltaML Interview Coding Exercise
 
